@@ -7,7 +7,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // If already logged in, skip the login page
+
   if (localStorage.getItem("userId")) {
     return <Navigate to="/" replace />;
   }
@@ -29,6 +29,7 @@ function Login() {
         localStorage.setItem("userId", data.userId);
         localStorage.setItem("userName", data.user.name);
         localStorage.setItem("userEmail", data.user.email);
+        window.dispatchEvent(new Event("authChange"));
         navigate("/");
       } else {
         alert(data.message || "Login failed");
@@ -44,14 +45,14 @@ function Login() {
       <div className="auth-split">
         <aside className="auth-left">
           <div className="auth-decor" aria-hidden></div>
-          <h1 className="hero-title">Adventure starts here</h1>
+          <h1 className="hero-title">Find What You’ve Lost</h1>
           <div className="hero-sub">Create and account to Join Our Community</div>
           <p className="hero-desc">Fast, easy posting for lost and found items across campus. Reach people instantly.</p>
         </aside>
 
         <div className="auth-right">
           <div className="auth-card">
-            <div className="small-logo">LF</div>
+            <div className="small-logo">L&F</div>
             <h2>Welcome back</h2>
             <p className="lead">Sign in to your account</p>
 

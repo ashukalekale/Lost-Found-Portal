@@ -6,10 +6,22 @@ export default function Header() {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
-    const name = localStorage.getItem("userName");
-    setIsLoggedIn(!!userId);
-    setUserName(name || "");
+    const updateLoginStatus = () => {
+      const userId = localStorage.getItem("userId");
+      const name = localStorage.getItem("userName");
+      setIsLoggedIn(!!userId);
+      setUserName(name || "");
+    };
+
+    updateLoginStatus();
+
+    window.addEventListener("storage", updateLoginStatus);
+    window.addEventListener("authChange", updateLoginStatus);
+
+    return () => {
+      window.removeEventListener("storage", updateLoginStatus);
+      window.removeEventListener("authChange", updateLoginStatus);
+    };
   }, []);
 
   const handleLogout = () => {

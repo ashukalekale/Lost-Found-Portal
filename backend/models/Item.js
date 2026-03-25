@@ -15,6 +15,21 @@ const itemSchema = new mongoose.Schema({
     enum: ["Electronics", "Clothing", "Documents", "Jewelry", "Keys", "Books", "Bags", "Other"],
     required: true,
   },
+  brand: {
+    type: String,
+  },
+  primaryColor: {
+    type: String,
+  },
+  lostDate: {
+    type: Date,
+  },
+  lostTime: {
+    type: String,
+  },
+  ownerName: {
+    type: String,
+  },
   description: {
     type: String,
     required: true,

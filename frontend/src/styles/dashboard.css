@@ -1,4 +1,3 @@
-/* Dashboard Page Styles */
 .dashboard-section {
   padding: 0 !important;
 }
@@ -38,12 +37,10 @@
 .hero-content h1 {
   font-size: 2.5rem;
   margin: 0 0 1rem;
-  font-weight: 800;
+  font-weight: normal;
   line-height: 1.1;
-  background: linear-gradient(90deg, #3498db, #2980b9);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-content > p {
@@ -110,7 +107,7 @@
 
 .hands-illustration {
   font-size: 8rem;
-  opacity: 0.3;
+  opacity: 0.8;
   animation: float 3s ease-in-out infinite;
 }
 
@@ -140,6 +137,43 @@
   margin: 0 0 2rem;
 }
 
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.mode-toggle-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mode-toggle-btn:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+
+.mode-toggle-btn.active {
+  background: #27ae60;
+}
+
+.mode-toggle-btn.active:hover {
+  background: #229954;
+}
+
 .no-items {
   text-align: center;
   color: var(--muted);
@@ -157,7 +191,7 @@
   background: white;
   border: 2px solid #e8ddf5;
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible;
   text-decoration: none;
   color: inherit;
   transition: all 0.3s ease;
@@ -229,14 +263,149 @@
   font-style: italic;
 }
 
+.item-card-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.item-card-wrapper.selection-mode {
+  padding-top: 2rem;
+}
+
+.item-card-wrapper.selected {
+  opacity: 0.7;
+  border: 3px solid #3498db;
+  border-radius: 12px;
+}
+
+.item-checkbox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 101;
+}
+
+.remove-selected-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f0f0f0;
+  border-radius: 8px;
+}
+
+.remove-selected-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.remove-selected-btn:hover {
+  background: #b91c1c;
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.5);
+}
+
+.action-menu-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+  }
+
+  .action-menu-btn {
+    background: white;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .action-menu-btn:hover {
+    background: #f5f5f5;
+  }
+
+  .action-menu {
+    position: absolute;
+    top: 38px;
+    right: 0;
+    width: 110px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    z-index: 110;
+  }
+
+  .action-menu .remove-btn {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    border-radius: 0;
+    padding: 0.5rem;
+    text-align: left;
+    background: #dc2626;
+    color: white;
+    font-weight: 600;
+    box-shadow: none;
+  }
+
+  .action-menu .remove-btn:hover {
+    background: #b91c1c;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .delete-btn,
+.remove-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+.delete-btn:hover,
+.remove-btn:hover {
+  background: #b91c1c;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5);
+}
+
 @media (max-width: 1000px) {
   .dashboard-hero {
     grid-template-columns: 1fr;
     padding: 2.5rem 1.5rem;
-  }
-
-  .hands-illustration {
-    display: none;
   }
 
   .dashboard-hero h1 {

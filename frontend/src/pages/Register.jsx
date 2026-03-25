@@ -40,7 +40,7 @@ function Register() {
       <div className="auth-split">
         <aside className="auth-left">
           <div className="auth-decor" aria-hidden></div>
-          <h1 className="hero-title">Adventure starts here</h1>
+          <h1 className="hero-title">Find What You’ve Lost</h1>
           <div className="hero-sub">Create and account to Join Our Community</div>
           <p className="hero-desc">Share found items, report missing belongings and connect with campus members quickly.</p>
         </aside>
