@@ -4,13 +4,13 @@ const Comment = require("../models/Comment");
 
 router.post("/", async (req, res) => {
   try {
-    const { text, postedBy, itemId } = req.body;
+    const { text, postedBy, itemId, parentId } = req.body;
 
     if (!text || !postedBy || !itemId) {
       return res.status(400).json({ message: "Please provide all required fields" });
     }
 
-    const comment = new Comment({ text, postedBy, itemId });
+    const comment = new Comment({ text, postedBy, itemId, parentId: parentId || null });
     await comment.save();
     await comment.populate("postedBy", "name email");
 
@@ -24,7 +24,7 @@ router.get("/:itemId", async (req, res) => {
   try {
     const comments = await Comment.find({ itemId: req.params.itemId })
       .populate("postedBy", "name email")
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: 1 });
 
     res.json(comments);
   } catch (error) {

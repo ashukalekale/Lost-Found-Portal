@@ -1,23 +1,36 @@
-/* Success Stories Page Styles */
+/* Success Stories Page - Main Styles */
+
+:root {
+  --accent: #3498db;
+  --accent-dark: #2980b9;
+  --accent-light: #5dade2;
+  --muted: #7f8c8d;
+  --border: #e8ddf5;
+  --success: #27ae60;
+  --light-bg: #f8f9fa;
+}
+
 .success-section {
   padding: 2rem 0;
 }
 
+/* ==================== HERO SECTION ==================== */
 .success-hero {
   text-align: center;
   background: linear-gradient(135deg, #3498db 0%, #2980b9 50%, #1f5a8e 100%);
   color: white;
-  padding: 3rem 2rem;
+  padding: 4rem 2rem;
   border-radius: 16px;
   margin-bottom: 3rem;
   box-shadow: 0 8px 24px rgba(52, 152, 219, 0.2);
 }
 
 .success-hero h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   margin: 0 0 1rem;
   font-weight: 800;
   line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .success-hero p {
@@ -44,7 +57,7 @@
   display: inline-block;
   padding: 0.85rem 1.8rem;
   background: white;
-  color: #2980b9;
+  color: var(--accent-dark);
   text-decoration: none;
   border-radius: 8px;
   font-weight: 600;
@@ -69,12 +82,7 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-.btn-hero.outlined {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-}
-
+/* ==================== STORIES SECTION ==================== */
 .stories-section {
   background: white;
   padding: 2.5rem;
@@ -82,72 +90,71 @@
   box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
 }
 
-.stories-section h2 {
+.stories-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stories-header h2 {
   color: var(--accent);
   font-size: 2rem;
-  text-align: center;
-  margin: 0 0 1rem;
+  margin: 0 0 0.5rem;
 }
 
 .stories-subtitle {
-  text-align: center;
   color: var(--muted);
-  margin-bottom: 2.5rem;
+  margin: 0.5rem 0 0;
   font-size: 1rem;
 }
 
-.stories-subtitle a {
+.share-link-btn {
+  background: none;
+  border: none;
   color: var(--accent);
-  text-decoration: none;
   font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-left: 0.3rem;
 }
 
-.stories-subtitle a:hover {
+.share-link-btn:hover {
+  color: var(--accent-light);
   text-decoration: underline;
 }
 
-.no-stories {
-  text-align: center;
-  color: var(--muted);
-  padding: 2rem;
-  font-size: 1.1rem;
-}
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .success-hero {
+    padding: 2rem 1rem;
+  }
 
-.stories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
+  .success-hero h1 {
+    font-size: 1.8rem;
+  }
 
-.story-card {
-  background: white;
-  border: 2px solid #e8ddf5;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(196, 55, 150, 0.05);
-}
+  .success-hero p {
+    font-size: 1rem;
+  }
 
-.story-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--accent);
-  box-shadow: 0 8px 24px rgba(52, 152, 219, 0.2);
-}
+  .hero-buttons {
+    flex-direction: column;
+  }
 
-.story-image {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  background: #f0f8ff;
-}
+  .btn-hero {
+    width: 100%;
+  }
 
-.story-content {
-  padding: 1.5rem;
-}
+  .stories-section {
+    padding: 1.5rem;
+  }
 
-.story-content h3 {
-  color: var(--accent);
-  margin: 0 0 0.75rem;
+  .stories-header {
+    flex-direction: column;
+  }
+}
   font-size: 1.2rem;
 }
 

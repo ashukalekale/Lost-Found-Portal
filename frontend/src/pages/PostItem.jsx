@@ -10,8 +10,9 @@ function PostItem() {
     description: "",
     location: "",
     contact: "",
-    image: "",
+    ownerName: "",
   });
+  const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -23,11 +24,7 @@ function PostItem() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({ ...formData, image: reader.result });
-      };
-      reader.readAsDataURL(file);
+      setImageFile(file);
     }
   };
 
@@ -35,7 +32,8 @@ function PostItem() {
     e.preventDefault();
     setLoading(true);
 
-    // Get userId from localStorage (set during login)
+   
+    
     const userId = localStorage.getItem("userId");
     if (!userId) {
       alert("Please login first");
@@ -44,17 +42,26 @@ function PostItem() {
     }
 
     try {
+      const payload = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        payload.append(key, value);
+      });
+      payload.append("postedBy", userId);
+      if (imageFile) {
+        payload.append("image", imageFile);
+      }
+
       const response = await fetch("http://localhost:5000/api/items", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, postedBy: userId }),
+        body: payload,
       });
 
       if (response.ok) {
         alert("Item posted successfully!");
         navigate("/search");
       } else {
-        alert("Failed to post item");
+        const errorData = await response.json();
+        alert("Failed to post item: " + (errorData.message || "Unknown error"));
       }
     } catch (error) {
       alert("Error posting item: " + error.message);
@@ -147,6 +154,22 @@ function PostItem() {
           />
         </div>
 
+        {formData.type === "lost" && (
+          <div className="form-group">
+            <label htmlFor="ownerName">Owner Name</label>
+            <input
+              id="ownerName"
+              type="text"
+              name="ownerName"
+              placeholder="Owner full name"
+              value={formData.ownerName}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </div>
+        )}
+
         <div className="form-group">
           <label htmlFor="contact">Contact Information</label>
           <input
@@ -170,7 +193,7 @@ function PostItem() {
             onChange={handleImageChange}
             className="form-input"
           />
-          {formData.image && <p className="image-preview">✓ Image selected</p>}
+          {imageFile && <p className="image-preview">✓ Image selected: {imageFile.name}</p>}
         </div>
 
         <button type="submit" disabled={loading} className="submit-btn">

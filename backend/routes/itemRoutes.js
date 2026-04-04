@@ -87,7 +87,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get item by ID
+
 router.get("/:id", async (req, res) => {
   try {
     const item = await Item.findById(req.params.id).populate("postedBy", "_id name email phone");
@@ -100,7 +100,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Update item
+
 router.put("/:id", async (req, res) => {
   try {
     const { title, description, location, status, contact, brand, primaryColor, lostDate, lostTime, ownerName } = req.body;
@@ -121,7 +121,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Delete item
 router.delete("/:id", async (req, res) => {
   try {
     const { userId } = req.body;
@@ -131,7 +130,7 @@ router.delete("/:id", async (req, res) => {
       return res.status(404).json({ message: "Item not found" });
     }
 
-    // Allow deletion if user is owner or admin
+
     if (userId !== "admin" && item.postedBy.toString() !== userId) {
       return res.status(403).json({ message: "You can only delete your own items" });
     }
@@ -143,7 +142,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// Admin: Delete items by user ID (for bulk cleanup)
+
 router.delete("/admin/deleteByUser/:userId", async (req, res) => {
   try {
     const { userId } = req.params;

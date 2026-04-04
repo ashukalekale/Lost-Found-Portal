@@ -1,4 +1,4 @@
-/* Item Details Page Styles */
+
 .item-details-section {
   padding: 2rem 0;
 }
@@ -151,6 +151,30 @@
   border-left: 3px solid var(--accent);
 }
 
+.comment-reply {
+  margin-left: 2rem;
+  padding: 0.75rem;
+  background: #f0f0ff;
+  border-radius: 6px;
+  border-left: 2px solid var(--accent);
+}
+
+.replies {
+  margin-top: 0.5rem;
+}
+
+.reply-form {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  border-radius: 6px;
+}
+
+.reply-btn {
+  background: #10b981;
+  color: white;
+}
+
 .comment-header {
   display: flex;
   justify-content: space-between;
@@ -202,9 +226,6 @@
 
 .comment-action-dropdown .action-menu-btn:hover {
   color: #111827;
-}
-
-.comment-action-dropdown .action-menu-btn:hover {
   background: #f3f4f6;
 }
 
@@ -252,6 +273,11 @@
 
 .delete-comment-btn {
   background: #dc2626;
+  color: white;
+}
+
+.reply-btn {
+  background: #10b981;
   color: white;
 }
 

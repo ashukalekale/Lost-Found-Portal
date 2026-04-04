@@ -1,4 +1,3 @@
-/* Search Page Styles */
 .search-section {
   padding: 2rem 0;
 }
@@ -202,4 +201,36 @@
   .search-hero h1 {
     font-size: 1.8rem;
   }
+}
+
+.toggle-select-btn {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-select-btn:hover {
+  background: #1d6fb6;
+}
+
+.toggle-select-btn.active {
+  background: #f59e0b;
+}
+
+.item-card-wrapper.selected {
+  border: 2px solid #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.item-checkbox {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 101;
 }

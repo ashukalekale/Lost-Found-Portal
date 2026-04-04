@@ -1,0 +1,100 @@
+/* ==================== STORY FORM ==================== */
+.story-form-container {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 2px dashed #3498db;
+}
+
+.story-form {
+  max-width: 600px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2980b9;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="file"],
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e8ddf5;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="file"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background: #d0d0d0;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .story-form-container {
+    padding: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
