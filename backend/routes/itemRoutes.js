@@ -103,17 +103,34 @@ router.get("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const { title, description, location, status, contact, brand, primaryColor, lostDate, lostTime, ownerName } = req.body;
-    
+    const { title, description, location, status, contact, brand, primaryColor, lostDate, lostTime, ownerName, userId } = req.body;
+
+    // fetch item first to validate ownership when userId is provided
+    const existing = await Item.findById(req.params.id);
+    if (!existing) return res.status(404).json({ message: "Item not found" });
+
+    // If a userId is provided, ensure they are the poster before allowing status change
+    if (userId && existing.postedBy.toString() !== userId && userId !== "admin") {
+      return res.status(403).json({ message: "You can only update your own items" });
+    }
+
+    const updatedFields = { updatedAt: Date.now() };
+    if (title !== undefined) updatedFields.title = title;
+    if (description !== undefined) updatedFields.description = description;
+    if (location !== undefined) updatedFields.location = location;
+    if (status !== undefined) updatedFields.status = status;
+    if (contact !== undefined) updatedFields.contact = contact;
+    if (brand !== undefined) updatedFields.brand = brand;
+    if (primaryColor !== undefined) updatedFields.primaryColor = primaryColor;
+    if (lostDate !== undefined) updatedFields.lostDate = lostDate;
+    if (lostTime !== undefined) updatedFields.lostTime = lostTime;
+    if (ownerName !== undefined) updatedFields.ownerName = ownerName;
+
     const item = await Item.findByIdAndUpdate(
       req.params.id,
-      { title, description, location, status, contact, brand, primaryColor, lostDate, lostTime, ownerName, updatedAt: Date.now() },
+      updatedFields,
       { new: true }
     ).populate("postedBy", "_id name email phone");
-
-    if (!item) {
-      return res.status(404).json({ message: "Item not found" });
-    }
 
     res.json({ message: "Item updated successfully", item });
   } catch (error) {
