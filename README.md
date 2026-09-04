@@ -1,10 +1,10 @@
-# Lost & Found Portal 🔍
+# Lost & Found Portal 
 
 A modern web application to help users find and post lost or found items in their community.
 
 ## Features
 
-✨ **Core Features:**
+**Core Features:**
 - User authentication (Register & Login)
 - Post lost or found items with images
 - Search items by name, location, and type
